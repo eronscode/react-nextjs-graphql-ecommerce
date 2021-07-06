@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import styled from 'styled-components';
+import Nav from './Nav';
 
 const Logo = styled.h1`
   font-size: 4rem;
@@ -38,6 +39,7 @@ function Header() {
         <Logo>
           <Link href="/">Sick Fits</Link>
         </Logo>
+        <Nav />
       </div>
       <div className="sub-bar">
         <p>search</p>
