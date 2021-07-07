@@ -4,6 +4,7 @@ import {
   withItemData,
   statelessSessions,
 } from '@keystone-next/keystone/session';
+import { ProductImage } from './schemas/ProductImage';
 import { Product } from './schemas/Product';
 import 'dotenv/config';
 
@@ -48,6 +49,7 @@ export default withAuth(
     lists: createSchema({
       User,
       Product,
+      ProductImage,
     }),
     ui: {
       isAccessAllowed: ({ session }) => !!session?.data,
