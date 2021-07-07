@@ -9,6 +9,15 @@ export const Product = list({
         displayMode: 'textarea',
       },
     }),
+    photo: relationship({
+      ref: 'ProductImage.product',
+      ui: {
+        displayMode: 'cards',
+        cardFields: ['image', 'altText'],
+        inlineCreate: { fields: ['image', 'altText'] },
+        inlineEdit: { fields: ['image', 'altText'] },
+      },
+    }),
     status: select({
       options: [
         { label: 'Draft', value: 'DRAFT' },
