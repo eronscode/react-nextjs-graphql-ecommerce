@@ -30,10 +30,10 @@ const Form = styled.form`
     width: 100%;
     padding: 0.5rem;
     font-size: 1rem;
-    border: 1px solid black;
+    border: 1px solid var(--secondary);
     &:focus {
       outline: 0;
-      border-color: var(--red);
+      border-color: var(--primary);
     }
   }
   button,

@@ -14,12 +14,12 @@ const propTypes = {
   Component: PropTypes.any,
 };
 
-function MainApp({ Component, pageProps, apollo  }) {
+function MainApp({ Component, pageProps, apollo }) {
   return (
     <ApolloProvider client={apollo}>
-    <PageLayout>
-      <Component {...pageProps} />
-    </PageLayout>
+      <PageLayout>
+        <Component {...pageProps} />
+      </PageLayout>
     </ApolloProvider>
   );
 }
