@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import ItemStyles from './styles/ItemStyles';
-import Title from './styles/Title';
-import PriceTag from './styles/PriceTag';
-import formatMoney from '../lib/formatMoney.js';
+import ItemStyles from '../styles/ItemStyles';
+import Title from '../styles/Title';
+import PriceTag from '../styles/PriceTag';
+import formatMoney from '../../lib/formatMoney.js';
 // import DeleteProduct from './DeleteProduct';
 // import AddToCart from './AddToCart';
 

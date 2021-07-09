@@ -22,6 +22,7 @@
     "babel-plugin-styled-components": "^1.12.0",
     "date-fns": "^2.16.1",
     "downshift": "^6.0.6",
+    "formik": "^2.2.9",
     "graphql": "^15.4.0",
     "graphql-tag": "^2.11.0",
     "graphql-upload": "^11.0.0",
@@ -34,7 +35,8 @@
     "react-dom": "^17.0.1",
     "react-transition-group": "^4.4.1",
     "styled-components": "^5.2.1",
-    "waait": "^1.0.5"
+    "waait": "^1.0.5",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "@apollo/react-testing": "^4.0.0",
