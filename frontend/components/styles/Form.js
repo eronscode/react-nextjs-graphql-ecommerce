@@ -12,7 +12,7 @@ const loading = keyframes`
   }
 `;
 
-const Form = styled.form`
+const FormWrapper = styled.div`
   box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.05);
   background: rgba(0, 0, 0, 0.02);
   border: 5px solid white;
@@ -39,12 +39,12 @@ const Form = styled.form`
   button,
   input[type='submit'] {
     width: auto;
-    background: red;
+    background: ${(props) => props.theme.primary};
     color: white;
     border: 0;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 600;
-    padding: 0.5rem 1.2rem;
+    padding: 1.3rem 1.5rem;
   }
   fieldset {
     border: 0;
@@ -71,4 +71,8 @@ const Form = styled.form`
   }
 `;
 
-export default Form;
+const FormItem = styled.div`
+  margin: 35px 0;
+`;
+
+export { FormItem, FormWrapper };

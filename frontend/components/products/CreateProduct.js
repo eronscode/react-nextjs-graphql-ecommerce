@@ -1,37 +1,48 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { Form, Formik } from 'formik';
-import React from 'react';
+import React, { useState } from 'react';
+
 import * as Yup from 'yup';
+import Button from '../Button';
 import FormikInput from '../FormikInput';
+import Input from '../Input';
+import { FormWrapper, FormItem } from '../styles/Form';
 
 const getFormProps = ({ ...props }) => {
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
   const initialValues = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    password: '',
+    name: '',
+    price: '',
+    image: '',
+    // lastName: '',
+    // email: '',
+    // phone: '',
+    // password: '',
   };
 
   const validationSchema = Yup.object().shape({
-    firstName: Yup.string()
-      .min(3, 'First name must be more than 2 characters')
-      .required('First name is required'),
-    lastName: Yup.string()
-      .min(3, 'Last name must be more than 2 characters')
-      .required('Last name is required'),
-    email: Yup.string()
-      .email('Invalid email address')
-      .required('Email is required'),
-    phone: Yup.string()
-      .matches(phoneRegExp, 'Phone number is not valid')
-      .min(10, 'Phone number is short. Should be 11 characters')
-      .max(11, 'Phone number is long. Should be 11 characters')
-      .required('Phone number is required'),
-    password: Yup.string()
-      .min(6, 'Password should be at least six characters')
-      .required('Password is required'),
+    name: Yup.string()
+      .min(3, 'Product name must be more than 2 characters')
+      .required('Product name is required'),
+    price: Yup.string()
+      .min(3, 'Product price must be more than 2 characters')
+      .required('Product price is required'),
+    // image: Yup.string().required('Product image is required'),
+    // lastName: Yup.string()
+    //   .min(3, 'Last name must be more than 2 characters')
+    //   .required('Last name is required'),
+    // email: Yup.string()
+    //   .email('Invalid email address')
+    //   .required('Email is required'),
+    // phone: Yup.string()
+    //   .matches(phoneRegExp, 'Phone number is not valid')
+    //   .min(10, 'Phone number is short. Should be 11 characters')
+    //   .max(11, 'Phone number is long. Should be 11 characters')
+    //   .required('Phone number is required'),
+    // password: Yup.string()
+    //   .min(6, 'Password should be at least six characters')
+    //   .required('Password is required'),
   });
 
   return {
@@ -42,12 +53,71 @@ const getFormProps = ({ ...props }) => {
 };
 
 function CreateProduct() {
+  const [file, setFile] = useState('');
+
+  async function handleSubmit(values, actions) {
+    const { name, price, image } = values;
+    console.log('', values);
+  }
+
+  function handleFileChange(e) {
+    setFile(e.target.files[0]);
+  }
   return (
     <div>
-      <Formik>
-        <Form>
-          <FormikInput />
-        </Form>
+      <Formik
+        {...getFormProps({
+          onSubmit: handleSubmit,
+        })}
+      >
+        {() => (
+          <Form>
+            <FormWrapper>
+              <h4>Hi there. You can create products here.</h4>
+              <fieldset>
+                <FormItem>
+                  <FormikInput.Input
+                    label="Product Name"
+                    name="name"
+                    type="text"
+                    placeholder="Product Name"
+                  />
+                </FormItem>
+                <FormItem>
+                  <FormikInput.Input
+                    label="Product Price"
+                    name="price"
+                    type="number"
+                    placeholder="Product Price"
+                  />
+                </FormItem>
+                <FormItem>
+                  <Input
+                    label="Product Image"
+                    name="image"
+                    type="file"
+                    onChange={(e) => {
+                      handleFileChange(e);
+                    }}
+                  />
+                </FormItem>
+                <FormItem>
+                  <FormikInput.Input
+                    label="Product Description"
+                    name="description"
+                    type="text"
+                    placeholder="Product Description"
+                  />
+                </FormItem>
+                <FormItem>
+                  <Button type="style" variant="primary">
+                    Create Product
+                  </Button>
+                </FormItem>
+              </fieldset>
+            </FormWrapper>
+          </Form>
+        )}
       </Formik>
     </div>
   );

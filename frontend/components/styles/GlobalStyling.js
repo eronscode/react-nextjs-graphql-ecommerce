@@ -1,15 +1,26 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
+const buttonColor = {
+  primary: {
+    default: '#172a3a',
+    hover: '#172a3a',
+    active: '#172a3a',
+  },
+};
 const lightTheme = {
   default: '#ffffff',
   primary: '#FFAb44',
   secondary: '#393939',
+  danger: 'red',
+  buttonColor,
 };
 
 const darkTheme = {
   default: '#172a3a',
   primary: '#FFAb44',
   secondary: '#fff',
+  danger: 'red',
+  buttonColor,
 };
 
 const GlobalStyles = createGlobalStyle`

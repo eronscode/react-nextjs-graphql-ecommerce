@@ -1,7 +1,8 @@
 import React from 'react';
+import CreateProduct from '../components/products/CreateProduct';
 
 function SellPage() {
-  return <p>Hello</p>;
+  return <CreateProduct />;
 }
 
 export default SellPage;
