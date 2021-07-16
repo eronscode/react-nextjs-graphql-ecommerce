@@ -59,4 +59,40 @@ const SINGLE_ITEM_QUERY = gql`
   }
 `;
 
-export { CREATE_PRODUCT_MUTATION, ALL_PRODUCTS_QUERY, SINGLE_ITEM_QUERY };
+const UPDATE_PRODUCT_MUTATION = gql`
+  mutation UPDATE_PRODUCT_MUTATION(
+    $id: ID!
+    $name: String
+    $description: String
+    $price: Int
+  ) {
+    updateProduct(
+      id: $id
+      data: { name: $name, description: $description, price: $price }
+    ) {
+      id
+      name
+      description
+      price
+    }
+  }
+`;
+
+const SINGLE_PRODUCT_QUERY = gql`
+  query SINGLE_PRODUCT_QUERY($id: ID!) {
+    Product(where: { id: $id }) {
+      id
+      name
+      description
+      price
+    }
+  }
+`;
+
+export {
+  CREATE_PRODUCT_MUTATION,
+  ALL_PRODUCTS_QUERY,
+  SINGLE_ITEM_QUERY,
+  UPDATE_PRODUCT_MUTATION,
+  SINGLE_PRODUCT_QUERY,
+};
