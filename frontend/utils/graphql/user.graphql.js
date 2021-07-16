@@ -29,4 +29,10 @@ const SIGNIN_MUTATION = gql`
     }
   }
 `;
-export { CURRENT_USER_QUERY, SIGNIN_MUTATION };
+
+const SIGN_OUT_MUTATION = gql`
+  mutation {
+    endSession
+  }
+`;
+export { CURRENT_USER_QUERY, SIGNIN_MUTATION, SIGN_OUT_MUTATION };
