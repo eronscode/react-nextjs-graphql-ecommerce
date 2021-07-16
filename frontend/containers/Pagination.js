@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/client';
-import gql from 'graphql-tag';
 import Head from 'next/head';
 import Link from 'next/link';
 import PaginationStyles from '../components/styles/PaginationStyles';
