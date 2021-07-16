@@ -36,6 +36,7 @@ const ButtonLoader = () => (
 );
 
 const Button = React.forwardRef(function ButtonWrapper(
+  // eslint-disable-next-line react/prop-types
   { children, variant, size, disabled, onClick, isLoading, ...restProps },
   ref
 ) {

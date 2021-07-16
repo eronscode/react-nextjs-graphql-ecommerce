@@ -1,25 +1,25 @@
-/* eslint-disable react/jsx-props-no-spreading */
+import { useMutation } from '@apollo/client';
 import { Form, Formik } from 'formik';
 import React, { useState } from 'react';
 
 import * as Yup from 'yup';
 import Button from '../../components/Button';
+import DisplayError from '../../components/ErrorMessage';
 import FormikInput from '../../components/FormikInput';
 import Input from '../../components/Input';
 import { FormWrapper, FormItem } from '../../components/styles/Form';
-import { CREATE_PRODUCT_MUTATION } from '../../utils/graphql/products.graphql';
+import {
+  ALL_PRODUCTS_QUERY,
+  CREATE_PRODUCT_MUTATION,
+} from '../../utils/graphql/products.graphql';
 
 const getFormProps = ({ ...props }) => {
-  const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+  // const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
   const initialValues = {
     name: '',
     price: '',
-    image: '',
-    // lastName: '',
-    // email: '',
-    // phone: '',
-    // password: '',
+    description: '',
   };
 
   const validationSchema = Yup.object().shape({
@@ -29,21 +29,6 @@ const getFormProps = ({ ...props }) => {
     price: Yup.string()
       .min(3, 'Product price must be more than 2 characters')
       .required('Product price is required'),
-    // image: Yup.string().required('Product image is required'),
-    // lastName: Yup.string()
-    //   .min(3, 'Last name must be more than 2 characters')
-    //   .required('Last name is required'),
-    // email: Yup.string()
-    //   .email('Invalid email address')
-    //   .required('Email is required'),
-    // phone: Yup.string()
-    //   .matches(phoneRegExp, 'Phone number is not valid')
-    //   .min(10, 'Phone number is short. Should be 11 characters')
-    //   .max(11, 'Phone number is long. Should be 11 characters')
-    //   .required('Phone number is required'),
-    // password: Yup.string()
-    //   .min(6, 'Password should be at least six characters')
-    //   .required('Password is required'),
   });
 
   return {
@@ -56,27 +41,43 @@ const getFormProps = ({ ...props }) => {
 function CreateProduct() {
   const [file, setFile] = useState('');
 
-  async function handleSubmit(values, actions) {
-    const { name, price, image } = values;
-    console.log('', values);
-    console.log('', file);
-  }
+  const [createProduct, { loading, error, data }] = useMutation(
+    CREATE_PRODUCT_MUTATION,
+    {
+      refetchQueries: [{ query: ALL_PRODUCTS_QUERY }],
+    }
+  );
 
+  async function handleSubmit(values) {
+    const { name, price, description } = values;
+    const payload = {
+      name,
+      price: parseInt(price),
+      description,
+      image: file,
+    };
+    const res = await createProduct({
+      variables: payload,
+    });
+    console.log({ res });
+  }
   function handleFileChange(e) {
     setFile(e.target.files[0]);
   }
   return (
     <div>
       <Formik
+        /* eslint-disable react/jsx-props-no-spreading */
         {...getFormProps({
           onSubmit: handleSubmit,
         })}
       >
         {() => (
           <Form>
+            <DisplayError error={error} />
             <FormWrapper>
               <h4>Hi there. You can create products here.</h4>
-              <fieldset aria-busy>
+              <fieldset disabled={loading} aria-busy={loading}>
                 <FormItem>
                   <FormikInput.Input
                     label="Product Name"

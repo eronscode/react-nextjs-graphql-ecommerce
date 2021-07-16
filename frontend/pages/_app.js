@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable react/prop-types */
 import PropTypes from 'prop-types';
 import NProgress from 'nprogress';
 import Router from 'next/router';
@@ -16,11 +14,15 @@ const propTypes = {
   Component: PropTypes.any,
 };
 
+/* eslint-disable react/prop-types */
 function MainApp({ Component, pageProps, apollo }) {
   return (
     <ApolloProvider client={apollo}>
       <PageLayout>
-        <Component {...pageProps} />
+        <Component
+          /* eslint-disable react/jsx-props-no-spreading */
+          {...pageProps}
+        />
       </PageLayout>
     </ApolloProvider>
   );
