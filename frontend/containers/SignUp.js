@@ -7,20 +7,23 @@ import * as Yup from 'yup';
 import Button from '../components/Button';
 import DisplayError from '../components/ErrorMessage';
 import FormikInput from '../components/FormikInput';
+import Input from '../components/Input';
 import { FormWrapper, FormItem } from '../components/styles/Form';
 
 import {
   CURRENT_USER_QUERY,
-  SIGNIN_MUTATION,
+  SIGNUP_MUTATION,
 } from '../utils/graphql/user.graphql';
 
 const getFormProps = ({ ...props }) => {
   const initialValues = {
+    name: '',
     email: '',
     password: '',
   };
 
   const validationSchema = Yup.object().shape({
+    name: Yup.string().required('Full name is required'),
     email: Yup.string()
       .required('Email is required')
       .email('Invalid email address'),
@@ -34,38 +37,31 @@ const getFormProps = ({ ...props }) => {
   };
 };
 
-function SignIn() {
-  const [signin, { data, loading }] = useMutation(SIGNIN_MUTATION, {
+function SignUp() {
+  const [signup, { data, loading, error }] = useMutation(SIGNUP_MUTATION, {
     // refetch the currently logged in user
-    refetchQueries: [{ query: CURRENT_USER_QUERY }],
+    // refetchQueries: [{ query: CURRENT_USER_QUERY }],
   });
 
   async function handleSubmit(values) {
-    const { email, password } = values;
+    const { name, email, password } = values;
     const payload = {
+      name,
       email,
       password,
     };
 
-    const res = await signin({
+    const res = await signup({
       variables: payload,
-    });
+    }).catch(console.error);
     console.log({ res });
-    if (
-      res?.data?.authenticateUserWithPassword.__typename ===
-      'UserAuthenticationWithPasswordSuccess'
-    ) {
+    if (res?.data.createUser.__typename === 'User') {
       Router.push({
-        pathname: `/products`,
+        pathname: `/signin`,
       });
     }
   }
 
-  const error =
-    data?.authenticateUserWithPassword.__typename ===
-    'UserAuthenticationWithPasswordFailure'
-      ? data?.authenticateUserWithPassword
-      : undefined;
   return (
     <div>
       <Formik
@@ -78,8 +74,16 @@ function SignIn() {
           <Form>
             <DisplayError error={error} />
             <FormWrapper>
-              <h4>Welcome back. Pick up from where you stopped!</h4>
+              <h4>Create an accout!</h4>
               <fieldset disabled={loading} aria-busy={loading}>
+                <FormItem>
+                  <FormikInput.Input
+                    label="Full Name"
+                    name="name"
+                    type="text"
+                    placeholder="Full Name"
+                  />
+                </FormItem>
                 <FormItem>
                   <FormikInput.Input
                     label="Email Address"
@@ -110,4 +114,4 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export default SignUp;

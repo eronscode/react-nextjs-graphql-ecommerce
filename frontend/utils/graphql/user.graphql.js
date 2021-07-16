@@ -35,4 +35,23 @@ const SIGN_OUT_MUTATION = gql`
     endSession
   }
 `;
-export { CURRENT_USER_QUERY, SIGNIN_MUTATION, SIGN_OUT_MUTATION };
+
+const SIGNUP_MUTATION = gql`
+  mutation SIGNUP_MUTATION(
+    $email: String!
+    $name: String!
+    $password: String!
+  ) {
+    createUser(data: { email: $email, name: $name, password: $password }) {
+      id
+      email
+      name
+    }
+  }
+`;
+export {
+  CURRENT_USER_QUERY,
+  SIGNIN_MUTATION,
+  SIGN_OUT_MUTATION,
+  SIGNUP_MUTATION,
+};
