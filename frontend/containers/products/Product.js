@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import Link from 'next/link';
 import ItemStyles from '../../components/styles/ItemStyles';
 import Title from '../../components/styles/Title';
 import PriceTag from '../../components/styles/PriceTag';
-import formatMoney from '../../lib/formatMoney.js';
+import formatMoney from '../../utils/formatMoney.js';
 // import DeleteProduct from './DeleteProduct';
 // import AddToCart from './AddToCart';
 

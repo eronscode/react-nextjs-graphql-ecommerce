@@ -1,5 +1,5 @@
 import React from 'react';
-import CreateProduct from '../components/products/CreateProduct';
+import CreateProduct from '../containers/products/CreateProduct';
 
 function SellPage() {
   return <CreateProduct />;

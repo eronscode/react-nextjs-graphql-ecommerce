@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
-import useThemeMode from '../lib/hooks/useThemeMode';
+import useThemeMode from '../utils/hooks/useThemeMode';
 import Header from './Header';
 import ScrollButton from './ScrollButton';
 import {

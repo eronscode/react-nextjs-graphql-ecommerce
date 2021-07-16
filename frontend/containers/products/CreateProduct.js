@@ -7,7 +7,7 @@ import Button from '../../components/Button';
 import FormikInput from '../../components/FormikInput';
 import Input from '../../components/Input';
 import { FormWrapper, FormItem } from '../../components/styles/Form';
-import { CREATE_PRODUCT_MUTATION } from '../../lib/graphql/products.graphql';
+import { CREATE_PRODUCT_MUTATION } from '../../utils/graphql/products.graphql';
 
 const getFormProps = ({ ...props }) => {
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
