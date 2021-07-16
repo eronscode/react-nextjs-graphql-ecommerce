@@ -10,6 +10,7 @@ import formatMoney from '../utils/formatMoney';
 import { useUser } from '../utils/hooks/api/useUser';
 import calcTotalPrice from '../utils/calcTotalPrice';
 import { useCart } from '../context/cart.context';
+import RemoveFromCart from './RemoveFromCart';
 
 const CartItemStyles = styled.li`
   padding: 1rem 0;
@@ -44,7 +45,7 @@ function CartItem({ cartItem }) {
           </em>
         </p>
       </div>
-      {/* <RemoveFromCart id={cartItem.id} /> */}
+      <RemoveFromCart id={cartItem.id} />
     </CartItemStyles>
   );
 }

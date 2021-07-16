@@ -8,4 +8,11 @@ const ADD_TO_CART_MUTATION = gql`
   }
 `;
 
-export { ADD_TO_CART_MUTATION };
+const REMOVE_FROM_CART_MUTATION = gql`
+  mutation REMOVE_FROM_CART_MUTATION($id: ID!) {
+    deleteCartItem(id: $id) {
+      id
+    }
+  }
+`;
+export { ADD_TO_CART_MUTATION, REMOVE_FROM_CART_MUTATION };

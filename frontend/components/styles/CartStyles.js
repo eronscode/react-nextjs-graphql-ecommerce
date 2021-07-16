@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 const CartStyles = styled.div`
+  background: ${(props) => props.theme.cartBackground};
   padding: 20px;
   position: relative;
-  background: white;
   position: fixed;
   height: 100%;
   top: 0;

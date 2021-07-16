@@ -13,6 +13,7 @@ const lightTheme = {
   secondary: '#393939',
   danger: 'red',
   buttonColor,
+  cartBackground: '#ffffff',
 };
 
 const darkTheme = {
@@ -21,6 +22,7 @@ const darkTheme = {
   secondary: '#fff',
   danger: 'red',
   buttonColor,
+  cartBackground: '#4d4d4d',
 };
 
 const GlobalStyles = createGlobalStyle`
