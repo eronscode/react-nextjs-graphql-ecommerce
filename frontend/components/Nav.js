@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useCart } from '../context/cart.context';
 import { useUser } from '../utils/hooks/api/useUser';
+import CartCount from './CartCount';
 import SignOut from './SignOut';
 import NavStyles from './styles/NavStyles';
 
@@ -18,6 +19,12 @@ export default function Nav() {
           <SignOut />
           <button type="button" onClick={openCart}>
             My Cart
+            <CartCount
+              count={user.cart.reduce(
+                (tally, cartItem) => tally + cartItem.quantity,
+                0
+              )}
+            />
           </button>
         </>
       )}
