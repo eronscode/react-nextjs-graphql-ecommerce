@@ -59,6 +59,14 @@ const GlobalStyles = createGlobalStyle`
     text-decoration: none;
     color: var(--secondary);
   }
+  p {
+    text-decoration: none;
+    color: var(--secondary);
+  }
+  h1,h2,h3,h4,h5{
+    color: var(--secondary);
+  
+  }
   a:hover {
     text-decoration: underline;
   }
