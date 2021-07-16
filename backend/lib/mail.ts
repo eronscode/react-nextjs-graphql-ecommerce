@@ -50,7 +50,7 @@ export async function sendPasswordResetEmail(
     from: 'eronscode@gmail.com',
     subject: 'Your password reset token! - Sick Fits',
     html: makeANiceEmail(`Your Password Reset Token is here!
-      <a href="${process.env.FRONTEND_URL}/reset?token=${resetToken}">Click Here to reset</a>
+      <a href="${process.env.FRONTEND_URL}/reset-password?token=${resetToken}">Click Here to reset</a>
     `),
   })) as MailResponse;
   if(process.env.MAIL_USER.includes('ethereal.email')) {

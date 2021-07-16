@@ -58,10 +58,28 @@ const REQUEST_RESET_MUTATION = gql`
     }
   }
 `;
+
+const RESET_MUTATION = gql`
+  mutation RESET_MUTATION(
+    $email: String!
+    $password: String!
+    $token: String!
+  ) {
+    redeemUserPasswordResetToken(
+      email: $email
+      token: $token
+      password: $password
+    ) {
+      code
+      message
+    }
+  }
+`;
 export {
   CURRENT_USER_QUERY,
   SIGNIN_MUTATION,
   SIGN_OUT_MUTATION,
   SIGNUP_MUTATION,
   REQUEST_RESET_MUTATION,
+  RESET_MUTATION,
 };
