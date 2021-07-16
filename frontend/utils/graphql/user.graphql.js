@@ -49,9 +49,19 @@ const SIGNUP_MUTATION = gql`
     }
   }
 `;
+
+const REQUEST_RESET_MUTATION = gql`
+  mutation REQUEST_RESET_MUTATION($email: String!) {
+    sendUserPasswordResetLink(email: $email) {
+      code
+      message
+    }
+  }
+`;
 export {
   CURRENT_USER_QUERY,
   SIGNIN_MUTATION,
   SIGN_OUT_MUTATION,
   SIGNUP_MUTATION,
+  REQUEST_RESET_MUTATION,
 };
