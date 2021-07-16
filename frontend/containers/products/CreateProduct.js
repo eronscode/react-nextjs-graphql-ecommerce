@@ -1,5 +1,6 @@
 import { useMutation } from '@apollo/client';
 import { Form, Formik } from 'formik';
+import { Router } from 'next/router';
 import React, { useState } from 'react';
 
 import * as Yup from 'yup';
@@ -60,6 +61,9 @@ function CreateProduct() {
       variables: payload,
     });
     console.log({ res });
+    Router.push({
+      pathname: `/product/${res.data.createProduct.id}`,
+    });
   }
   function handleFileChange(e) {
     setFile(e.target.files[0]);
