@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export const CURRENT_USER_QUERY = gql`
+const CURRENT_USER_QUERY = gql`
   query {
     authenticatedItem {
       ... on User {
@@ -11,3 +11,22 @@ export const CURRENT_USER_QUERY = gql`
     }
   }
 `;
+
+const SIGNIN_MUTATION = gql`
+  mutation SIGNIN_MUTATION($email: String!, $password: String!) {
+    authenticateUserWithPassword(email: $email, password: $password) {
+      ... on UserAuthenticationWithPasswordSuccess {
+        item {
+          id
+          email
+          name
+        }
+      }
+      ... on UserAuthenticationWithPasswordFailure {
+        code
+        message
+      }
+    }
+  }
+`;
+export { CURRENT_USER_QUERY, SIGNIN_MUTATION };
