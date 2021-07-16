@@ -67,11 +67,14 @@ const GlobalStyles = createGlobalStyle`
     color: var(--secondary);
   
   }
+  
   a:hover {
     text-decoration: underline;
   }
   button {
     font-family: 'radnika_next', --apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    cursor: pointer;
+    outline: 0;
   }
 `;
 

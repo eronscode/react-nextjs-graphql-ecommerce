@@ -5,6 +5,7 @@ import { ApolloProvider } from '@apollo/client';
 import PageLayout from '../components/Page';
 import '../components/styles/nprogress.css';
 import withData from '../utils/withData';
+import { CartProvider } from '../context/cart.context';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
@@ -18,12 +19,14 @@ const propTypes = {
 function MainApp({ Component, pageProps, apollo }) {
   return (
     <ApolloProvider client={apollo}>
-      <PageLayout>
-        <Component
-          /* eslint-disable react/jsx-props-no-spreading */
-          {...pageProps}
-        />
-      </PageLayout>
+      <CartProvider>
+        <PageLayout>
+          <Component
+            /* eslint-disable react/jsx-props-no-spreading */
+            {...pageProps}
+          />
+        </PageLayout>
+      </CartProvider>
     </ApolloProvider>
   );
 }
