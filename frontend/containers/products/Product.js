@@ -4,6 +4,7 @@ import ItemStyles from '../../components/styles/ItemStyles';
 import Title from '../../components/styles/Title';
 import PriceTag from '../../components/styles/PriceTag';
 import formatMoney from '../../utils/formatMoney.js';
+import DeleteProduct from './DeleteProduct';
 // import DeleteProduct from './DeleteProduct';
 // import AddToCart from './AddToCart';
 
@@ -30,8 +31,8 @@ export default function Product({ product }) {
         >
           Edit ✏️
         </Link>
-        {/* <AddToCart id={product.id} />
-        <DeleteProduct id={product.id}>Delete</DeleteProduct> */}
+        {/* <AddToCart id={product.id} /> */}
+        <DeleteProduct id={product.id}>Delete</DeleteProduct>
       </div>
     </ItemStyles>
   );

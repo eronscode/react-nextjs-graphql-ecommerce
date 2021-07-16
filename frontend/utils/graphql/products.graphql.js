@@ -89,10 +89,20 @@ const SINGLE_PRODUCT_QUERY = gql`
   }
 `;
 
+const DELETE_PRODUCT_MUTATION = gql`
+  mutation DELETE_PRODUCT_MUTATION($id: ID!) {
+    deleteProduct(id: $id) {
+      id
+      name
+    }
+  }
+`;
+
 export {
   CREATE_PRODUCT_MUTATION,
   ALL_PRODUCTS_QUERY,
   SINGLE_ITEM_QUERY,
   UPDATE_PRODUCT_MUTATION,
   SINGLE_PRODUCT_QUERY,
+  DELETE_PRODUCT_MUTATION,
 };

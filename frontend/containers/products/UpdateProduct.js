@@ -44,25 +44,17 @@ function UpdateProduct({ id }) {
   async function handleSubmit(values) {
     console.log({ values });
     const { name, price, description } = values;
-    const payload = {
-      name,
-      price: parseInt(price),
-      description,
-    };
     const res = await updateProduct({
       variables: {
         id,
         name,
         description,
-        price,
+        price: parseInt(price),
       },
     });
     console.log({ res });
-    // Router.push({
-    //   pathname: `/product/${res.data.createProduct.id}`,
-    // });
   }
-
+  if (loading) return <p>loading...</p>;
   return (
     <div>
       <Formik
@@ -79,7 +71,7 @@ function UpdateProduct({ id }) {
       >
         {() => (
           <Form>
-            <DisplayError error={error} />
+            <DisplayError error={error || updateError} />
             <FormWrapper>
               <h4>Edit Product</h4>
               <fieldset disabled={updateLoading} aria-busy={updateLoading}>
