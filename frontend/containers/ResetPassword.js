@@ -10,6 +10,7 @@ import FormikInput from '../components/FormikInput';
 import { FormWrapper, FormItem } from '../components/styles/Form';
 
 import { RESET_MUTATION } from '../utils/graphql/user.graphql';
+import { useUser } from '../utils/hooks/api/useUser';
 
 const getFormProps = ({ ...props }) => {
   const initialValues = {
@@ -33,6 +34,7 @@ const getFormProps = ({ ...props }) => {
 
 function ResetPassword({ token }) {
   const [resetPassword, { data, loading, error }] = useMutation(RESET_MUTATION);
+  const user = useUser();
 
   async function handleSubmit(values, actions) {
     const { email, password } = values;
@@ -53,6 +55,9 @@ function ResetPassword({ token }) {
     ? data?.redeemUserPasswordResetToken
     : undefined;
 
+  if (user) {
+    return <h4>You're already logged in!</h4>;
+  }
   return (
     <div>
       <Formik
