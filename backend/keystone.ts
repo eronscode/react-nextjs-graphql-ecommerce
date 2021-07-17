@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { config, createSchema } from '@keystone-next/keystone/schema';
 import { createAuth } from '@keystone-next/auth';
 import {
   withItemData,
   statelessSessions,
 } from '@keystone-next/keystone/session';
+import { OrderItem } from './schemas/OrderItem';
+import { Order } from './schemas/Order';
 import { extendGraphqlSchema } from './mutations/index';
 import { CartItem } from './schemas/CartItem';
 import { ProductImage } from './schemas/ProductImage';
@@ -61,6 +64,8 @@ export default withAuth(
       Product,
       ProductImage,
       CartItem,
+      OrderItem,
+      Order,
     }),
     extendGraphqlSchema,
     ui: {
