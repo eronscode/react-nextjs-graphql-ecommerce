@@ -98,6 +98,27 @@ const DELETE_PRODUCT_MUTATION = gql`
   }
 `;
 
+const SEARCH_PRODUCTS_QUERY = gql`
+  query SEARCH_PRODUCTS_QUERY($searchTerm: String!) {
+    searchTerms: allProducts(
+      where: {
+        OR: [
+          { name_contains_i: $searchTerm }
+          { description_contains_i: $searchTerm }
+        ]
+      }
+    ) {
+      id
+      name
+      photo {
+        image {
+          publicUrlTransformed
+        }
+      }
+    }
+  }
+`;
+
 export {
   CREATE_PRODUCT_MUTATION,
   ALL_PRODUCTS_QUERY,
@@ -105,4 +126,5 @@ export {
   UPDATE_PRODUCT_MUTATION,
   SINGLE_PRODUCT_QUERY,
   DELETE_PRODUCT_MUTATION,
+  SEARCH_PRODUCTS_QUERY,
 };
