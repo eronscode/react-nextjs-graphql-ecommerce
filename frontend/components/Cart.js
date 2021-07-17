@@ -4,13 +4,11 @@ import CartStyles from './styles/CartStyles';
 import CloseButton from './styles/CloseButton';
 import Supreme from './styles/Supreme';
 import formatMoney from '../utils/formatMoney';
-
-// import RemoveFromCart from './RemoveFromCart';
-// import { Checkout } from './Checkout';
 import { useUser } from '../utils/hooks/api/useUser';
 import calcTotalPrice from '../utils/calcTotalPrice';
 import { useCart } from '../context/cart.context';
 import RemoveFromCart from './RemoveFromCart';
+import { Checkout } from '../containers/CheckOut';
 
 const CartItemStyles = styled.li`
   padding: 1rem 0;
@@ -68,7 +66,7 @@ export default function Cart() {
       </ul>
       <footer>
         <p>{formatMoney(calcTotalPrice(me.cart))}</p>
-        {/* <Checkout /> */}
+        <Checkout />
       </footer>
     </CartStyles>
   );

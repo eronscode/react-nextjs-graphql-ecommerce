@@ -27,8 +27,8 @@ const CartStyles = styled.div`
     border-top: 10px double var(--secondary);
     margin-top: 2rem;
     padding-top: 2rem;
-    display: grid;
-    grid-template-columns: auto auto;
+    /* display: grid;
+    grid-template-columns: auto auto; */
     align-items: center;
     font-size: 3rem;
     font-weight: 900;
